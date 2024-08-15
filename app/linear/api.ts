@@ -1,3 +1,5 @@
+// TODO: make use server
+
 import { LinearTask } from "@/lib/types/linear";
 import { MotionTask } from "@/lib/types/motion";
 import papa from "papaparse";
@@ -21,10 +23,6 @@ export const createLinearTasksAction = async (
       console.log("Created", res);
     }
   }
-
-  console.log({
-    linearTasks: data,
-  });
 
   const motionTasks = await convertLinearToMotion(data);
 

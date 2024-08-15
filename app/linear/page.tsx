@@ -6,9 +6,7 @@ import { Projects } from "../motion/Projects";
 import { Workspaces } from "../motion/Workspaces";
 
 export default function Page() {
-  const [state, formAction] = useActionState(createLinearTasksAction, null);
-
-  console.log({ state });
+  const [, formAction] = useActionState(createLinearTasksAction, null);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-4 text-center gap-8">
