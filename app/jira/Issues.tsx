@@ -3,7 +3,7 @@
 import { Suspense } from "react";
 import { getProjectIssues } from "./api";
 import { CreateMotionTaskButton } from "./CreateMotionTaskButton";
-import { CreateMotionTaskLink } from "./CreateMotionTaskLink";
+import { CreateMotionTaskIssueKey } from "./CreateMotionTaskIssueKey";
 
 export const Issues = async () => {
   const issues = await getProjectIssues();
@@ -11,7 +11,7 @@ export const Issues = async () => {
   return (
     <div className="grid grid-cols-1 gap-4 max-h-[calc(100dvh-200px)] overflow-y-scroll">
       <p>Issues</p>
-      <CreateMotionTaskLink />
+      <CreateMotionTaskIssueKey />
       {issues?.issues?.map((issue) => (
         <div
           key={issue.id}

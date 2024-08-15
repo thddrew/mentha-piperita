@@ -5,7 +5,7 @@ import { createJiraIssueLinkFormAction } from "./api";
 import { useQueryStates, parseAsString } from "nuqs";
 import { toast } from "sonner";
 
-export const CreateMotionTaskLink = () => {
+export const CreateMotionTaskIssueKey = () => {
   const [query] = useQueryStates({
     project: parseAsString,
     workspace: parseAsString,
@@ -30,7 +30,7 @@ export const CreateMotionTaskLink = () => {
         className="bg-transparent border rounded-md border-solid border-black/[.08] dark:border-white/[.145] outline-none p-2 w-full"
         type="text"
         name="issueKey"
-        placeholder="URL"
+        placeholder="Issue Key"
       />
       <input
         type="hidden"
