@@ -11,11 +11,13 @@
   "dependencies": {
     "react": "19.0.0-rc-06d0b89e-20240801",
     "react-dom": "19.0.0-rc-06d0b89e-20240801",
+    "papaparse": "5.4.1",
     "next": "15.0.0-canary.103"
   },
   "devDependencies": {
     "typescript": "^5",
     "@types/node": "^20",
+    "@types/papaparse": "5.3.14",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "postcss": "^8",
