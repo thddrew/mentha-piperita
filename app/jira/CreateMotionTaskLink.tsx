@@ -1,15 +1,25 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { createJiraIssueLinkFormAction } from "./api";
 import { useQueryStates, parseAsString } from "nuqs";
+import { toast } from "sonner";
 
 export const CreateMotionTaskLink = () => {
   const [query] = useQueryStates({
     project: parseAsString,
     workspace: parseAsString,
   });
-  const [, formAction] = useActionState(createJiraIssueLinkFormAction, null);
+  const [state, formAction] = useActionState(
+    createJiraIssueLinkFormAction,
+    null
+  );
+
+  useEffect(() => {
+    if (state) {
+      toast.success(`Task created: ${state.name}`);
+    }
+  }, [state]);
 
   return (
     <form

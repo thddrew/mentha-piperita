@@ -5,6 +5,7 @@ import { parseAsString, useQueryStates } from "nuqs";
 import { convertJiraIssueToMotionTask } from "./api";
 import { useState } from "react";
 import { createTask } from "../motion/api";
+import { toast } from "sonner";
 
 export const CreateMotionTaskButton = ({ issue }: { issue: Issue }) => {
   const [loading, setLoading] = useState(false);
@@ -14,6 +15,7 @@ export const CreateMotionTaskButton = ({ issue }: { issue: Issue }) => {
     workspace: parseAsString,
   });
 
+  // TODO: move to server
   const onCreate = async () => {
     setLoading(true);
 
@@ -30,8 +32,10 @@ export const CreateMotionTaskButton = ({ issue }: { issue: Issue }) => {
       );
 
       await createTask(motionTask);
+      toast.success(`Task created: ${motionTask.name}`);
     } catch (err) {
       console.log(err);
+      toast.error(`Error creating task: ${err}`);
     } finally {
       setLoading(false);
     }

@@ -74,7 +74,7 @@ export const getJiraIssueDetails = async (issueKey: string) => {
 };
 
 export const createJiraIssueLinkFormAction = async (
-  state: Issue | null,
+  state: MotionTask | null,
   formData: FormData
 ) => {
   const issueKey = formData.get("issueKey") as string;
