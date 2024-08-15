@@ -5,10 +5,11 @@ import {
   MotionTask,
   MotionWorkspaceResponse,
 } from "@/lib/types/motion";
+import { cache } from "react";
 
 const BASE = "https://api.usemotion.com/v1";
 
-export const getMotionWorkspaces = async () => {
+export const getMotionWorkspaces = cache(async () => {
   const response = await fetch(`${BASE}/workspaces`, {
     headers: {
       Accept: "application/json",
@@ -18,9 +19,9 @@ export const getMotionWorkspaces = async () => {
   const data = (await response.json()) as MotionWorkspaceResponse;
 
   return data.workspaces;
-};
+});
 
-export const getMotionProjects = async () => {
+export const getMotionProjects = cache(async () => {
   const response = await fetch(
     `${BASE}/projects?workspaceId=ujbHmIO7zQG5UGQJB2GuX`,
     {
@@ -33,7 +34,7 @@ export const getMotionProjects = async () => {
   const data = (await response.json()) as MotionProjectResponse;
 
   return data.projects;
-};
+});
 
 export const createProject = async (projectName: string) => {
   const response = await fetch(`${BASE}/projects`, {

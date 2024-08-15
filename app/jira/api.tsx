@@ -3,39 +3,42 @@
 import { Issue } from "@/lib/types/jira";
 import { MotionTask } from "@/lib/types/motion";
 import { createTask } from "../motion/api";
+import { cache } from "react";
 
-export const getProjectIssues = async (projectKey: string = "ELI-REPORT") => {
-  try {
-    const response = await fetch(
-      `${process.env.JIRA_DOMAIN}/rest/api/3/search?jql=project%20%3D%20${projectKey}&maxresults=100`,
-      {
-        headers: {
-          Accept: "application/json",
-          Authorization: `${process.env.JIRA_AUTH_KEY}`,
-        },
-      }
-    );
+export const getProjectIssues = cache(
+  async (projectKey: string = "ELI-REPORT") => {
+    try {
+      const response = await fetch(
+        `${process.env.JIRA_DOMAIN}/rest/api/3/search?jql=project%20%3D%20${projectKey}&maxresults=100`,
+        {
+          headers: {
+            Accept: "application/json",
+            Authorization: `${process.env.JIRA_AUTH_KEY}`,
+          },
+        }
+      );
 
-    const data = await response.json();
+      const data = await response.json();
 
-    return data as {
-      issues: Issue[];
-      maxResults: number;
-      startAt: number;
-      total: number;
-      expand: string;
-    };
-  } catch (err) {
-    console.log(err);
-    return {
-      issues: [],
-      maxResults: 0,
-      startAt: 0,
-      total: 0,
-      expand: "",
-    };
+      return data as {
+        issues: Issue[];
+        maxResults: number;
+        startAt: number;
+        total: number;
+        expand: string;
+      };
+    } catch (err) {
+      console.log(err);
+      return {
+        issues: [],
+        maxResults: 0,
+        startAt: 0,
+        total: 0,
+        expand: "",
+      };
+    }
   }
-};
+);
 
 export const convertJiraIssueToMotionTask = async (
   issue: Issue,

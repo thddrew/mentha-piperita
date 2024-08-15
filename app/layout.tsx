@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "sonner";
+import Link from "next/link";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,6 +30,20 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="flex flex-col gap-2 p-8 fixed">
+          <Link
+            className="hover:underline"
+            href="/linear"
+          >
+            Linear
+          </Link>
+          <Link
+            className="hover:underline"
+            href="/jira"
+          >
+            Jira
+          </Link>
+        </div>
         {children}
         <Toaster />
       </body>
