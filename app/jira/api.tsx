@@ -9,7 +9,7 @@ export const getProjectIssues = cache(
   async (projectKey: string = "ELI-REPORT") => {
     try {
       const response = await fetch(
-        `${process.env.JIRA_DOMAIN}/rest/api/3/search?jql=project%20%3D%20${projectKey}&maxresults=100`,
+        `${process.env.JIRA_DOMAIN}/rest/api/3/search?jql=project%20%3D%20${projectKey}%20AND%20status%20!%3D%20Done&maxResults=100`,
         {
           headers: {
             Accept: "application/json",

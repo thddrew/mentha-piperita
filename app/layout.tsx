@@ -43,6 +43,12 @@ export default function RootLayout({
           >
             Jira
           </Link>
+          <Link
+            className="hover:underline"
+            href="/trello"
+          >
+            Trello
+          </Link>
         </div>
         {children}
         <Toaster />

@@ -1,12 +1,12 @@
 "use client";
 
 import { Suspense } from "react";
-import { Projects } from "../motion/Projects";
-import { Workspaces } from "../motion/Workspaces";
+import { Projects } from "./Projects";
+import { Workspaces } from "./Workspaces";
 
 export default function MotionDetails() {
   return (
-    <div className="flex flex-col items-center justify-center px-4 text-center gap-8">
+    <div className="space-y-3">
       <Suspense fallback={<div>Loading...</div>}>
         <Workspaces />
       </Suspense>
